@@ -21,4 +21,15 @@ public class StringCalculatorTest {
     assertEquals(expected, actual);
   }
 
+  @Test
+  public void addASingleNumber() {
+    // Arrange / Build
+    StringCalculator calc = new StringCalculator();
+    int expected = 1;
+    // Act / Operate
+    int actual = calc.add("1");
+    // Assert / Check
+    assertEquals(expected, actual);
+  }
+
 }
