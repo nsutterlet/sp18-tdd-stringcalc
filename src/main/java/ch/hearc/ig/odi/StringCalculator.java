@@ -12,13 +12,14 @@ public class StringCalculator {
   }
 
   public int add(String numbers) {
-    if (numbers.isEmpty()) {
-      return 0;
+    int sum = 0;
+    if (!numbers.isEmpty()) {
+      String[] operands = numbers.split(",");
+      for (String operand : operands) {
+        sum += parseInt(operand);
+      }
     }
-    if (numbers.contains(",")) {
-      return parseInt(numbers.split(",")[0]) + parseInt(numbers.split(",")[1]);
-    }
-    return parseInt(numbers);
+    return sum;
   }
 
 }
