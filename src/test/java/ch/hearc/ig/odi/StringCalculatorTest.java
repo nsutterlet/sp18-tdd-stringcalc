@@ -6,28 +6,42 @@ package ch.hearc.ig.odi;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
+/**
+ * test class using parameterized tests
+ * REF: https://junit.org/junit4/javadoc/4.12/org/junit/runners/Parameterized.html
+ */
+@RunWith(Parameterized.class)
 public class StringCalculatorTest {
 
-  @Test
-  public void emptyString() {
-    // Arrange / Build
-    StringCalculator calc = new StringCalculator();
-    int expected = 0;
-    // Act / Operate
-    int actual = calc.add("");
-    // Assert / Check
-    assertEquals(expected, actual);
+  private String calcInput;
+  private int expected;
+
+  public StringCalculatorTest(String calcInput, int calcOutput) {
+    this.calcInput = calcInput;
+    this.expected = calcOutput;
+  }
+
+  @Parameters(name = "{index}: sum[{0}]={1}")
+  public static Iterable<Object[]> data() {
+    return Arrays.asList(new Object[][]{
+        {"", 0}, // emptyString
+        {"1", 1}, // addASingleNumber
+        {"13984", 13984}, // addASingleNumber
+    });
   }
 
   @Test
-  public void addASingleNumber() {
+  public void test() {
     // Arrange / Build
     StringCalculator calc = new StringCalculator();
-    int expected = 1;
     // Act / Operate
-    int actual = calc.add("1");
+    int actual = calc.add(calcInput);
     // Assert / Check
     assertEquals(expected, actual);
   }
