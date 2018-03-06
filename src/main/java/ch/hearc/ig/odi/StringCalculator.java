@@ -22,7 +22,11 @@ public class StringCalculator {
     if (!numbers.isEmpty()) {
       String[] operands = numbers.split(delimiters);
       for (String operand : operands) {
-        sum += parseInt(operand);
+        int n = parseInt(operand);
+        if (n < 0) {
+          throw new IllegalArgumentException("negatives not allowed : " + n);
+        }
+        sum += n;
       }
     }
     return sum;
