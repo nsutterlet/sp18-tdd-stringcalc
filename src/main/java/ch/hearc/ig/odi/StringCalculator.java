@@ -6,4 +6,11 @@ package ch.hearc.ig.odi;
 
 public class StringCalculator {
 
+  StringCalculator() {
+  }
+
+  public int add(String numbers) {
+    return -1;
+  }
+
 }
