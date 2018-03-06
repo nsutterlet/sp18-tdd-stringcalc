@@ -33,6 +33,7 @@ public class StringCalculatorTest {
         {"", 0}, // emptyString
         {"1", 1}, // addASingleNumber
         {"13984", 13984}, // addASingleNumber
+        {"1,2", 3}, // addASingleNumber
     });
   }
 
