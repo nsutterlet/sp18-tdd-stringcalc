@@ -32,7 +32,6 @@ public class StringCalculatorTest {
     return Arrays.asList(new Object[][]{
         {"", 0}, // emptyString
         {"1", 1}, // addASingleNumber
-        {"13984", 13984}, // addASingleNumber
         {"1,2", 3}, // addASingleNumber
     });
   }
