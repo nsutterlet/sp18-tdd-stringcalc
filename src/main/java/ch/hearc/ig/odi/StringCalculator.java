@@ -4,13 +4,18 @@
 
 package ch.hearc.ig.odi;
 
+import static java.lang.Integer.parseInt;
+
 public class StringCalculator {
 
   StringCalculator() {
   }
 
   public int add(String numbers) {
-    return 0;
+    if (numbers.isEmpty()) {
+      return 0;
+    }
+    return parseInt(numbers);
   }
 
 }
