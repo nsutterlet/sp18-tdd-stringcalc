@@ -45,7 +45,7 @@ public class StringCalculator {
 
   private static class CalcConfig {
 
-    static final String MULTIPLE_DELIMITERS_REGEX = "(?<=\\[)(.*)(?=\\])";
+    static final String MULTIPLE_DELIMITERS_REGEX = "\\[(.*?)\\]";
     static final String CUSTOM_DELIMITER_REGEX = "(?<=//)(.*)(?=\n)";
     static final String STANDARD_DELIMITERS = "[,\n]";
     private String input;
@@ -75,8 +75,18 @@ public class StringCalculator {
         delimiters = customDelimiterMatcher.group(1);
         numbers = numbers.substring(customDelimiterMatcher.end(1) + 1);
         Matcher multipleDelimitersMatcher = multipleDelimitersPtn.matcher(delimiters);
-        if (multipleDelimitersMatcher.find()) {
-          delimiters = escapeSpecialRegexChars(multipleDelimitersMatcher.group(1));
+        String customDelimiters = "";
+        StringBuilder b = new StringBuilder();
+        while (multipleDelimitersMatcher.find()) {
+          if (b.length() > 0) {
+            b.append("|");
+          }
+          b.append("(");
+          b.append(escapeSpecialRegexChars(multipleDelimitersMatcher.group(1)));
+          b.append(")");
+        }
+        if (b.length() > 0) {
+          delimiters = b.toString();
         }
       }
       return this;
