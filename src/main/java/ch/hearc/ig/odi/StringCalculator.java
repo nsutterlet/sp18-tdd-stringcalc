@@ -45,12 +45,17 @@ public class StringCalculator {
 
   private static class CalcConfig {
 
+    static final String MULTIPLE_DELIMITERS_REGEX = "(?<=\\[)(.*)(?=\\])";
+    static final String CUSTOM_DELIMITER_REGEX = "(?<=//)(.*)(?=\n)";
+    static final String STANDARD_DELIMITERS = "[,\n]";
     private String input;
     private String numbers;
     private String delimiters;
 
+
     CalcConfig(String input) {
       this.input = input;
+      delimiters = STANDARD_DELIMITERS;
     }
 
     String getNumbers() {
@@ -62,19 +67,16 @@ public class StringCalculator {
     }
 
     CalcConfig invoke() {
-      delimiters = "[,\n]";
+      Pattern customDelimiterPtn = Pattern.compile(CUSTOM_DELIMITER_REGEX);
+      Pattern multipleDelimitersPtn = Pattern.compile(MULTIPLE_DELIMITERS_REGEX);
+      Matcher customDelimiterMatcher = customDelimiterPtn.matcher(input);
       numbers = input;
-      Pattern pattern = Pattern
-          .compile("(?<=//)(.*)(?=\n)"); // capture positive lookbehind, positive lookahead
-      Matcher m = pattern.matcher(input);
-      if (m.find()) {
-        delimiters = m.group(1);
-        numbers = numbers.substring(m.end(1) + 1);
-        Pattern p2 = Pattern
-            .compile("(?<=\\[)(.*)(?=\\])");
-        Matcher m2 = p2.matcher(delimiters);
-        if (m2.find()) {
-          delimiters = escapeSpecialRegexChars(m2.group(1));
+      if (customDelimiterMatcher.find()) {
+        delimiters = customDelimiterMatcher.group(1);
+        numbers = numbers.substring(customDelimiterMatcher.end(1) + 1);
+        Matcher multipleDelimitersMatcher = multipleDelimitersPtn.matcher(delimiters);
+        if (multipleDelimitersMatcher.find()) {
+          delimiters = escapeSpecialRegexChars(multipleDelimitersMatcher.group(1));
         }
       }
       return this;
