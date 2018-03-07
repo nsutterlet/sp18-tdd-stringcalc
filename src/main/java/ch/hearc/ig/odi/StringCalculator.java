@@ -29,10 +29,12 @@ public class StringCalculator {
       String[] operands = numbers.split(delimiters);
       for (String operand : operands) {
         int n = parseInt(operand);
-        if (n < 0) {
-          negatives.add(n);
+        if (n <= 1000) {
+          if (n < 0) {
+            negatives.add(n);
+          }
+          sum += n;
         }
-        sum += n;
       }
       if (!negatives.isEmpty()) {
         throw new IllegalArgumentException("negatives not allowed : " + negatives.toString());
