@@ -68,14 +68,13 @@ public class StringCalculator {
 
     CalcConfig invoke() {
       Pattern customDelimiterPtn = Pattern.compile(CUSTOM_DELIMITER_REGEX);
-      Pattern multipleDelimitersPtn = Pattern.compile(MULTIPLE_DELIMITERS_REGEX);
       Matcher customDelimiterMatcher = customDelimiterPtn.matcher(input);
       numbers = input;
       if (customDelimiterMatcher.find()) {
         delimiters = customDelimiterMatcher.group(1);
         numbers = numbers.substring(customDelimiterMatcher.end(1) + 1);
+        Pattern multipleDelimitersPtn = Pattern.compile(MULTIPLE_DELIMITERS_REGEX);
         Matcher multipleDelimitersMatcher = multipleDelimitersPtn.matcher(delimiters);
-        String customDelimiters = "";
         StringBuilder b = new StringBuilder();
         while (multipleDelimitersMatcher.find()) {
           if (b.length() > 0) {
