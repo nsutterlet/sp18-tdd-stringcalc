@@ -17,9 +17,9 @@ public class StringCalculatorTestExceptions {
   public void negativeNumberRaisesException() {
     // Arrange / Build
     StringCalculator calc = new StringCalculator();
-    String calcInput = "-1";
+    String calcInput = "-1,2,3,5,-3,-6";
     thrown.expect(IllegalArgumentException.class);
-    thrown.expectMessage("-1");
+    thrown.expectMessage("-1, -3, -6");
     // Act / Operate
     calc.add(calcInput);
     // Assert / Check
