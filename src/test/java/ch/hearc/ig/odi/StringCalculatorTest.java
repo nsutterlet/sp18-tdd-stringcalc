@@ -39,6 +39,8 @@ public class StringCalculatorTest {
         {"1\n2,3", 6}, // allow new lines between numbers
         {"//;\n1;2;3", 6}, // declare delimiters at first line
         {"2,1001", 2}, // ignore numbers bigger than 1000
+        {"//[***]\n1***2***3", 6}, // delimiters can be of any length
+
 
     });
   }

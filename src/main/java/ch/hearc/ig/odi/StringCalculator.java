@@ -22,7 +22,7 @@ public class StringCalculator {
     return getSum(numbers, delimiters);
   }
 
-  private int getSum(String numbers, String delimiters) {
+  private int getSum(String numbers, String delimiters) throws IllegalArgumentException {
     int sum = 0;
     ArrayList<Integer> negatives = new ArrayList<>();
     if (!numbers.isEmpty()) {
