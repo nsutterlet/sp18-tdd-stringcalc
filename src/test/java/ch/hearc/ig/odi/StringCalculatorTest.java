@@ -42,8 +42,7 @@ public class StringCalculatorTest {
         {"//[***]\n1***2***3", 6}, // delimiters can be of any length
         {"//[&%]\n1&%2&%3", 6}, // delimiters can be of any length
         {"//[*][%]\n1*2%3", 6}, // multiple custom delimiters
-
-
+        {"//[*er][%]\n1*er2%3", 6}, // multiple custom delimiters longer than one char
     });
   }
 
