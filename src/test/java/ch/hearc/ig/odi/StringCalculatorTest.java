@@ -27,6 +27,11 @@ public class StringCalculatorTest {
     this.expected = calcOutput;
   }
 
+  /**
+   * Creates the test data collection
+   *
+   * @return test data
+   */
   @Parameters(name = "{index}: sum[{0}]={1}")
   public static Iterable<Object[]> data() {
     return Arrays.asList(new Object[][]{
@@ -43,6 +48,7 @@ public class StringCalculatorTest {
         {"//[&%]\n1&%2&%3", 6}, // delimiters can be of any length
         {"//[*][%]\n1*2%3", 6}, // multiple custom delimiters
         {"//[*er][%]\n1*er2%3", 6}, // multiple custom delimiters longer than one char
+        {"//[*er][%]\n1*er2%3*er2%3", 11}, // multiple custom delimiters longer than one char
     });
   }
 
