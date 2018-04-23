@@ -10,7 +10,7 @@ node {
       echo "nothing to compile for hello.sh..."
     }
     stage('test') {
-      sh "./test_hello.sh"
+      sh "./src/test/java/ch/hearc/ig/odi/AllTestSuite.java"
     }
     stage('package') {
       sh "tar -cvzf hello.tar.gz hello.sh"
