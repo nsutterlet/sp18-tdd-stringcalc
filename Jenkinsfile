@@ -21,6 +21,7 @@ pipeline {
         stage('Test') { 
             steps {
                 sh 'mvn test' 
+                echo "Tests unitaires lancés avec succès"
             }         
         }
     }
